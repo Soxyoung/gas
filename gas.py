@@ -6,6 +6,7 @@ from datetime import datetime
 import time
 from datetime import timedelta
 from datetime import timezone
+import sys
 
 def generateNewID():
     characters = '0123456789ABCDEF'
@@ -53,10 +54,10 @@ if __name__ == '__main__':
     var0 = sys.argv[1]
     var1 = sys.argv[2]
 
-    start_time = "05:40"
-    end_time = "06:54"
-    _start_time = "06:28"
-    _end_time = "06:32"
+    start_time = sys.argv[3]
+    end_time = sys.argv[4]
+    _start_time = sys.argv[5]
+    _end_time = sys.argv[6]
 
     delta_max = (int)(3.95*60*60)
     start = time.time()
