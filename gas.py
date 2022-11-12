@@ -58,12 +58,15 @@ if __name__ == '__main__':
     end_time = sys.argv[4]
     _start_time = sys.argv[5]
     _end_time = sys.argv[6]
-
-    delta_max = (int)(3.95*60*60)
+    period = sys.argv[7]
+    
+    delta_max = (int)(period*60*60)
     start = time.time()
 
     utc_now = datetime.utcnow().replace(tzinfo=timezone.utc)
     beijing_now = utc_now.astimezone(SHA_TZ).strftime("%H:%M")
+    beijing_cur = utc_now.astimezone(SHA_TZ)
+    print(beijing_cur.strftime("%Y-%m-%d %H:%M"), "星期" + str(beijing_cur.weekday() + 1))
     while True:
         now = time.time()
         delta = (int)(now - start)
