@@ -58,7 +58,7 @@ if __name__ == '__main__':
     end_time = sys.argv[4]
     _start_time = sys.argv[5]
     _end_time = sys.argv[6]
-    period = sys.argv[7]
+    period = (float)sys.argv[7]
     
     delta_max = (int)(period*60*60)
     start = time.time()
