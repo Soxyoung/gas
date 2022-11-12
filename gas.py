@@ -6,6 +6,7 @@ from datetime import datetime
 import time
 from datetime import timedelta
 from datetime import timezone
+from dateutil.parser import parse
 import sys
 
 def generateNewID():
@@ -83,19 +84,25 @@ if __name__ == '__main__':
             utc_now = datetime.utcnow().replace(tzinfo=timezone.utc)
             beijing_now = utc_now.astimezone(SHA_TZ).strftime("%H:%M")
             continue
-        else:
+        if (beijing_now > start_time and beijing_now < end_time):
 
             while (beijing_now > _start_time and beijing_now < _end_time):
                 query(var0, var1)
-                sleep_times = 1
+                sleep_times = 0.95
                 time.sleep(sleep_times)
                 utc_now = datetime.utcnow().replace(tzinfo=timezone.utc)
                 beijing_now = utc_now.astimezone(SHA_TZ).strftime("%H:%M")
 
             query(var0, var1)
-            sleep_times = 600
-            time.sleep(sleep_times)
+
+            if (beijing_now <= _start_time):
+                a1 = parse(beijing_now)
+                a2 = parse(_start_time)
+                sleep_times = min(540, (a2-a1).seconds) + 61
+                time.sleep(sleep_times)
+            else:
+                sleep_times = 599.95
+                time.sleep(sleep_times)
             utc_now = datetime.utcnow().replace(tzinfo=timezone.utc)
             beijing_now = utc_now.astimezone(SHA_TZ).strftime("%H:%M")
-
 
