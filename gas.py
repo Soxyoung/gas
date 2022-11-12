@@ -75,7 +75,7 @@ if __name__ == '__main__':
             # print(utc_now.astimezone(SHA_TZ).strftime("%Y-%m-%d %H:%M:%S.%f"),"触发超时巡检退出条件，结束运行！")
             print("触发超时巡检退出条件，结束运行！")
             exit(0)
-        if (beijing_now > end_time):
+        if (beijing_now >= end_time):
             # print(utc_now.astimezone(SHA_TZ).strftime("%Y-%m-%d %H:%M:%S.%f"),"我生君未生，君生我已老！")
             exit(0)
         if (start_time > beijing_now):
@@ -101,7 +101,9 @@ if __name__ == '__main__':
                 sleep_times = min(540, (a2-a1).seconds) + 61
                 time.sleep(sleep_times)
             else:
-                sleep_times = 599.95
+                a1 = parse(beijing_now)
+                a2 = parse(end_time)
+                sleep_times = min(599.5, (a2-a1).seconds)
                 time.sleep(sleep_times)
             utc_now = datetime.utcnow().replace(tzinfo=timezone.utc)
             beijing_now = utc_now.astimezone(SHA_TZ).strftime("%H:%M")
