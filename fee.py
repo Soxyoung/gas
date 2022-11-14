@@ -43,6 +43,7 @@ def query(host, meteraddr):
         response = requests.post('http://' + host + '/WxPay/pay/search', cookies=cookies, headers=headers, data=data)
         res = response.json()
         print(beijing_cur.strftime("%Y-%m-%d %H:%M:%S.%f"), res["data"]['remainmoney'])
+        return res["data"]['remainmoney']
     except:
         pass
 
