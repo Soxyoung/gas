@@ -83,7 +83,6 @@ def qryHis(host, meteraddr):
         today = utc_now
         for tr in tab.findAll('tr')[1:]:
             tore_time = parse(tr.findAll('td')[0].getText().strip())
-            tore_hour = tore_time.hour
             dead_line = datetime(today.year, today.month, today.day, 6, 0, 0)
             if (tore_time >= dead_line):
                 continue
