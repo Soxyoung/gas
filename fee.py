@@ -80,7 +80,7 @@ def qryHis(host, meteraddr):
         soup = BeautifulSoup(resp, "lxml")
         tab = soup.find('table')
         print("----------------------------------")
-        today = utc_now
+        today = utc_now.astimezone(SHA_TZ)
         for tr in tab.findAll('tr')[1:]:
             tore_time = parse(tr.findAll('td')[0].getText().strip())
             dead_line = datetime(today.year, today.month, today.day, 6, 0, 0)
