@@ -80,9 +80,15 @@ def qryHis(host, meteraddr):
         soup = BeautifulSoup(resp, "lxml")
         tab = soup.find('table')
         print("----------------------------------")
+        today = utc_now
         for tr in tab.findAll('tr')[1:]:
+            tore_time = parse(tr.findAll('td')[0].getText().strip())
+            tore_hour = tore_time.hour
+            dead_line = datetime(today.year, today.month, today.day, 6, 0, 0)
+            if (tore_time >= dead_line):
+                continue
             print(tr.findAll('td')[0].getText().strip(), "-----", tr.findAll('td')[1].getText().strip())
-            dict.update(tr.findAll('td')[0].getText().strip(), tr.findAll('td')[1].getText().strip())
+            dict.update({tr.findAll('td')[0].getText().strip(): tr.findAll('td')[1].getText().strip()})
         print("----------------------------------")
         return dict
     except:
