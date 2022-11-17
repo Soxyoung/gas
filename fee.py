@@ -43,7 +43,7 @@ def query(host, meteraddr):
         response = requests.post('http://' + host + '/WxPay/pay/search', cookies=cookies, headers=headers, data=data)
         res = response.json()
         print(beijing_cur.strftime("%Y-%m-%d %H:%M:%S.%f"), res["data"]['remainmoney'])
-        return res["data"]['remainmoney']
+        return float(res["data"]['remainmoney'])
     except:
         pass
 
@@ -138,14 +138,17 @@ if __name__ == '__main__':
                 utc_now = datetime.utcnow().replace(tzinfo=timezone.utc)
                 beijing_now = utc_now.astimezone(SHA_TZ).strftime("%H:%M")
             if (cur < begin):
-                print("昨日未充值！昨日消费：" , (cur - begin))
+                print("昨日未充值！昨日消费：" , (begin - cur))
+                print("昨日未充值！昨日消费：" , round((begin - cur),2))
                 exit(0)
             if (cur > begin):
                 print("昨日充值！")
                 dict = qryHis(var0, var1)
                 for k,v in dict.items():
+                    print(k, "充值",   v)
                     if (begin + (float)(v) > cur):
-                        print(k, "充值",   v, " |昨日消费：", (begin + (float)(v) - cur))
+                        print("昨日消费：", (begin + (float)(v) - cur))
+                        print("昨日消费：", round((begin + (float)(v) - cur),2))
                         exit(0)
                     else:
                         begin = begin + (float)(v)
