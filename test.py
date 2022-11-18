@@ -88,7 +88,8 @@ def qryHis(host, meteraddr):
             dict.update({tr.findAll('td')[0].getText().strip(): tr.findAll('td')[1].getText().strip()})
         print("----------------------------------")
         return dict
-    except:
+    except Exception as err:
+        print(err)
         pass
 
 if __name__ == '__main__':
