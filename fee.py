@@ -44,7 +44,8 @@ def query(host, meteraddr):
         res = response.json()
         print(beijing_cur.strftime("%Y-%m-%d %H:%M:%S.%f"), res["data"]['remainmoney'])
         return float(res["data"]['remainmoney'])
-    except:
+    except Exception as err:
+        print(err)
         pass
 
 SHA_TZ = timezone(
@@ -77,20 +78,21 @@ def qryHis(host, meteraddr):
         response = requests.post('http://' + host + '/WxPay/record/torecord', cookies=cookies, headers=headers, params=data)
 
         resp = response.text
-        soup = BeautifulSoup(resp, "lxml")
+        soup = BeautifulSoup(resp, "html.parser")
         tab = soup.find('table')
         print("----------------------------------")
         today = utc_now.astimezone(SHA_TZ)
         for tr in tab.findAll('tr')[1:]:
             tore_time = parse(tr.findAll('td')[0].getText().strip())
-            dead_line = datetime(today.year, today.month, today.day, 6, 0, 0)
+            dead_line = datetime(today.year, today.month, today.day, 6, 15, 0)
             if (tore_time >= dead_line):
                 continue
             print(tr.findAll('td')[0].getText().strip(), "-----", tr.findAll('td')[1].getText().strip())
             dict.update({tr.findAll('td')[0].getText().strip(): tr.findAll('td')[1].getText().strip()})
         print("----------------------------------")
         return dict
-    except:
+    except Exception as err:
+        print(err)
         pass
 
 if __name__ == '__main__':
