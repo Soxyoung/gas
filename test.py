@@ -75,7 +75,7 @@ def qryHis(host, meteraddr):
         response = requests.post('http://' + host + '/WxPay/record/torecord', cookies=cookies, headers=headers, params=data)
 
         resp = response.text
-        soup = BeautifulSoup(resp, "lxml")
+        soup = BeautifulSoup(resp, "html.parser")
         tab = soup.find('table')
         print("----------------------------------")
         today = utc_now.astimezone(SHA_TZ)
