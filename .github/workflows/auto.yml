@@ -40,7 +40,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Scan
-        run: python gas.py ${{ secrets.VAR0 }} ${{ secrets.VAR1 }} "06:00" "06:54" "06:25" "06:36" 1.95
+        run: python gas.py ${{ secrets.VAR0 }} ${{ secrets.VAR1 }} "06:00" "06:54" "06:27" "06:30" 1.95
 
       # Runs a set of commands using the runners shell
 #       - name: Run a multi-line script
