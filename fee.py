@@ -119,21 +119,21 @@ if __name__ == '__main__':
         now = time.time()
         delta = (int)(now - start)
         if (delta >= delta_max):
-            # print(utc_now.astimezone(SHA_TZ).strftime("%Y-%m-%d %H:%M:%S.%f"),"触发超时巡检退出条件，结束运行！")
+            print(utc_now.astimezone(SHA_TZ).strftime("%Y-%m-%d %H:%M:%S.%f"),"触发超时巡检退出条件，结束运行！")
             # print("触发超时巡检退出条件，结束运行！")
             exit(0)
         if (beijing_now >= end_time):
-            # print(utc_now.astimezone(SHA_TZ).strftime("%Y-%m-%d %H:%M:%S.%f"),"我生君未生，君生我已老！")
+            print(utc_now.astimezone(SHA_TZ).strftime("%Y-%m-%d %H:%M:%S.%f"),"我生君未生，君生我已老！")
             exit(0)
         if (start_time > beijing_now):
-            # print(utc_now.astimezone(SHA_TZ).strftime("%Y-%m-%d %H:%M:%S.%f"),"不是不报，时候未到！")
+            print(utc_now.astimezone(SHA_TZ).strftime("%Y-%m-%d %H:%M:%S.%f"),"不是不报，时候未到！")
             time.sleep(10)
             utc_now = datetime.utcnow().replace(tzinfo=timezone.utc)
             beijing_now = utc_now.astimezone(SHA_TZ).strftime("%H:%M")
             continue
         if (beijing_now > start_time and beijing_now < end_time):
             cur = query(var0, var1)
-            print("循环查询查询：", cur)
+            print("循环查询：", cur)
             if (begin == cur):
                 sleep_times = 595
                 time.sleep(sleep_times)
