@@ -116,6 +116,12 @@ if __name__ == '__main__':
     begin = query(var0, var1)
     print("初始查询：", begin)
     while True:
+        now = time.time()
+        delta = (int)(now - start)
+        if (delta >= delta_max):
+            print(utc_now.astimezone(SHA_TZ).strftime("%Y-%m-%d %H:%M:%S.%f"),"触发超时巡检退出条件，结束运行！")
+            # print("触发超时巡检退出条件，结束运行！")
+            exit(0)
         cur = query(var0, var1)
         print("循环查询：", cur)
         if (begin == cur):
