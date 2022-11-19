@@ -116,41 +116,23 @@ if __name__ == '__main__':
     begin = query(var0, var1)
     print("初始查询：", begin)
     while True:
-        now = time.time()
-        delta = (int)(now - start)
-        if (delta >= delta_max):
-            print(utc_now.astimezone(SHA_TZ).strftime("%Y-%m-%d %H:%M:%S.%f"),"触发超时巡检退出条件，结束运行！")
-            # print("触发超时巡检退出条件，结束运行！")
+        cur = query(var0, var1)
+        print("循环查询：", cur)
+        if (begin == cur):
+            sleep_times = 541.95
+            time.sleep(sleep_times)
+        if (cur < begin):
+            print("昨日未充值！昨日消费：" , (begin - cur))
+            print("昨日未充值！昨日消费：" , round((begin - cur),2))
             exit(0)
-        if (beijing_now >= end_time):
-            print(utc_now.astimezone(SHA_TZ).strftime("%Y-%m-%d %H:%M:%S.%f"),"我生君未生，君生我已老！")
-            exit(0)
-        if (start_time > beijing_now):
-            print(utc_now.astimezone(SHA_TZ).strftime("%Y-%m-%d %H:%M:%S.%f"),"不是不报，时候未到！")
-            time.sleep(10)
-            utc_now = datetime.utcnow().replace(tzinfo=timezone.utc)
-            beijing_now = utc_now.astimezone(SHA_TZ).strftime("%H:%M")
-            continue
-        if (beijing_now > start_time and beijing_now < end_time):
-            cur = query(var0, var1)
-            print("循环查询：", cur)
-            if (begin == cur):
-                sleep_times = 595
-                time.sleep(sleep_times)
-                utc_now = datetime.utcnow().replace(tzinfo=timezone.utc)
-                beijing_now = utc_now.astimezone(SHA_TZ).strftime("%H:%M")
-            if (cur < begin):
-                print("昨日未充值！昨日消费：" , (begin - cur))
-                print("昨日未充值！昨日消费：" , round((begin - cur),2))
-                exit(0)
-            if (cur > begin):
-                print("昨日充值！")
-                dict = qryHis(var0, var1)
-                for k,v in dict.items():
-                    print(k, "充值",   v)
-                    if (begin + (float)(v) > cur):
-                        print("昨日消费：", (begin + (float)(v) - cur))
-                        print("昨日消费：", round((begin + (float)(v) - cur),2))
-                        exit(0)
-                    else:
-                        begin = begin + (float)(v)
+        if (cur > begin):
+            print("昨日充值！")
+            dict = qryHis(var0, var1)
+            for k,v in dict.items():
+                print(k, "充值",   v)
+                if (begin + (float)(v) > cur):
+                    print("昨日消费：", (begin + (float)(v) - cur))
+                    print("昨日消费：", round((begin + (float)(v) - cur),2))
+                    exit(0)
+                else:
+                    begin = begin + (float)(v)
