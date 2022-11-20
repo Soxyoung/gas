@@ -87,7 +87,7 @@ def qryHis(host, meteraddr):
             dead_line = datetime(today.year, today.month, today.day, 6, 15, 0)
             if (tore_time >= dead_line):
                 continue
-            print(tr.findAll('td')[0].getText().strip(), "-----", tr.findAll('td')[1].getText().strip())
+#             print(tr.findAll('td')[0].getText().strip(), "-----", tr.findAll('td')[1].getText().strip())
             dict.update({tr.findAll('td')[0].getText().strip(): tr.findAll('td')[1].getText().strip()})
         print("----------------------------------")
         return dict
@@ -137,7 +137,7 @@ if __name__ == '__main__':
             for k,v in dict.items():
                 print(k, "充值",   v)
                 if (begin + (float)(v) > cur):
-                    print("昨日消费：", (begin + (float)(v) - cur))
+#                     print("昨日消费：", (begin + (float)(v) - cur))
                     print("昨日消费：", round((begin + (float)(v) - cur),2))
                     exit(0)
                 else:
