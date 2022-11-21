@@ -128,7 +128,7 @@ if __name__ == '__main__':
             sleep_times = 541.95
             time.sleep(sleep_times)
         if (cur < begin):
-            print("昨日未充值！昨日消费：" , (begin - cur))
+#             print("昨日未充值！昨日消费：" , (begin - cur))
             print("昨日未充值！昨日消费：" , round((begin - cur),2))
             exit(0)
         if (cur > begin):
