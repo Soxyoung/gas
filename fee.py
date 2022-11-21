@@ -119,6 +119,7 @@ if __name__ == '__main__':
         now = time.time()
         delta = (int)(now - start)
         if (delta >= delta_max):
+            utc_now = datetime.utcnow().replace(tzinfo=timezone.utc)
             print(utc_now.astimezone(SHA_TZ).strftime("%Y-%m-%d %H:%M:%S.%f"),"触发超时巡检退出条件，结束运行！")
             # print("触发超时巡检退出条件，结束运行！")
             exit(0)
