@@ -123,22 +123,23 @@ if __name__ == '__main__':
             # print("触发超时巡检退出条件，结束运行！")
             exit(0)
         cur = query(var0, var1)
-        print("循环查询：", cur)
+#         print("循环查询：", cur)
         if (begin == cur):
             sleep_times = 541.95
             time.sleep(sleep_times)
         if (cur < begin):
 #             print("昨日未充值！昨日消费：" , (begin - cur))
-            print("昨日未充值！昨日消费：" , round((begin - cur),2))
+            print("循环查询：", cur)
+            print("未充值！消费：" , round((begin - cur),2))
             exit(0)
         if (cur > begin):
-            print("昨日充值！")
+            print("充值！冲抵结算后剩余：", cur)
             dict = qryHis(var0, var1)
             for k,v in dict.items():
                 print(k, "充值",   v)
                 if (begin + (float)(v) > cur):
 #                     print("昨日消费：", (begin + (float)(v) - cur))
-                    print("昨日消费：", round((begin + (float)(v) - cur),2))
+                    print("消费：", round((begin + (float)(v) - cur),2))
                     exit(0)
                 else:
                     begin = begin + (float)(v)
