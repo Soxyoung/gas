@@ -1,30 +1,19 @@
-# This is a basic workflow to help you get started with Actions
+name: Tests
 
-name: filestorage
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-    
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Checkout date
-      uses: moonrailgun/branch-filestorage-action@v1.2.2
+    - name: Checkout file date
+      uses: moonrailgun/branch-filestorage-action@v1.2.0
       with:
         path: date
     - name: Read and show
-      run: cat date
+      run: touch date && cat date
     - name: update date
       run: echo $(date) > date
