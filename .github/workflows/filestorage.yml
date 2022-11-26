@@ -16,4 +16,6 @@ jobs:
     - name: Read and show
       run: touch date && cat date
     - name: update date
-      run: echo $(date) > date
+      run: |
+        echo $(date) > date
+        echo $(date)
