@@ -1,3 +1,5 @@
+# This is a basic workflow to help you get started with Actions
+
 name: txt2
 
 # Controls when the workflow will run
@@ -17,11 +19,8 @@ on:
   workflow_dispatch:
 
 jobs:
-
-
-  job_2:
+  job_1:
     name: Multiply by 9
-    needs: job_1
     runs-on: windows-latest
     steps:
       - name: Download math result for job 1
@@ -40,7 +39,7 @@ jobs:
 
   job_3:
     name: Display results
-    needs: job_2
+    needs: job_1
     runs-on: macOS-latest
     steps:
       - name: Download math result for job 2
