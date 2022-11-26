@@ -23,9 +23,8 @@ jobs:
     name: Multiply by 9
     runs-on: windows-latest
     steps:
-      - name: Download math result for job 1
-      - shell: bash
-        run: |     
-          expr 3 + 7 > 1126.txt
+          - shell: bash
+            run: |
+              expr 3 + 7 > math-homework.txt
 
 
