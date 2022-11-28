@@ -15,7 +15,7 @@ jobs:
         path: date
     - name: Read and show
       run: cat date
-    - name: update date
-      run: |
-        echo $(date) >> date
-        echo $(date)
+#     - name: update date
+#       run: |
+#         echo $(date) >> date
+#         echo $(date)
