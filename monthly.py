@@ -52,6 +52,7 @@ if __name__ == '__main__':
     print(beijing_now, beijing_now.tzname())
     print(beijing_now.strftime('%Y-%m-%d %H:%M:%S.%f'))
 
-    key = sys.argv[0]
-    rst = sys.argv[1]
+    rst = sys.argv[0]
+    key = sys.argv[1]
+    
     main(rst, key)
