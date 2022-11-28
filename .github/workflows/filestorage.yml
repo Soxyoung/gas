@@ -27,5 +27,5 @@ jobs:
       - name: Read and show
         run: 
               
-          python monthly.py github ${{ secrets.KEY}} 
+          python monthly.py $(cat date) ${{ secrets.KEY}} 
 
