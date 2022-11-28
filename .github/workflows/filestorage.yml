@@ -25,5 +25,5 @@ jobs:
         with:
           path: date
       - name: Read and show
-        run: cat date
+        run: tail -7f date
 
