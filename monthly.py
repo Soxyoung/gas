@@ -11,6 +11,7 @@ import random
 from datetime import datetime
 from datetime import timedelta
 from datetime import timezone
+from dateutil.relativedelta import relativedelta
 
 # 在容器里运行时时间为 UTC 时间，不是北京时间，需要进行调整
 def beijing(sec, what):
@@ -31,7 +32,8 @@ def sendSeverJ(sendKey, title, content):
     req = requests.post(api, data = data)
 
 def main(content, sendKey):
-    title = str(beijing_now.month) + u"月燃气费"
+    last_month = beijing_now - relativedelta(months=1)
+    title = str(last_month.month) + u"月燃气费"
     sendSeverJ(sendKey, title, content)
 
 def judge():
