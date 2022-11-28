@@ -30,9 +30,8 @@ def sendSeverJ(sendKey, title, content):
     }
     req = requests.post(api, data = data)
 
-def main(rst, sendKey):
+def main(content, sendKey):
     title = str(beijing_now.month) + u"月燃气费"
-    content = rst
     sendSeverJ(sendKey, title, content)
 
 def judge():
