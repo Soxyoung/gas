@@ -26,5 +26,5 @@ jobs:
 #         echo 2022-11-25 0.27 >> date
 #         echo 2022-11-27 0.28 >> date
     - name: Read and show
-      run: tail -7f date
+      run: tail -7f $(date)
 
