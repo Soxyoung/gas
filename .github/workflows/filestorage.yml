@@ -26,5 +26,5 @@ jobs:
       run:
         echo $(date)
         cat date
-        python monthly.py github ${{ secrets.KEY}}
+#         python monthly.py github ${{ secrets.KEY}}
 
