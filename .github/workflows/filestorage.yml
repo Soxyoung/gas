@@ -25,5 +25,7 @@ jobs:
         with:
           path: date
       - name: Read and show
-        run: tail -7f date
+        run: 
+              
+          python monthly.py github ${{ secrets.KEY}}
 
