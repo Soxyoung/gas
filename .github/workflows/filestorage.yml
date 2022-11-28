@@ -26,6 +26,6 @@ jobs:
           path: date
       - name: Read and show
         run: 
-          cat date
+          cat date |
           python monthly.py helloworld ${{ secrets.KEY}} 
 
