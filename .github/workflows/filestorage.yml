@@ -27,5 +27,5 @@ jobs:
       - name: Read and show
         run: 
           cat date |
-          python monthly.py helloworld ${{ secrets.KEY}} 
+          python monthly.py $(cat date) ${{ secrets.KEY}} 
 
