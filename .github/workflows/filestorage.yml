@@ -14,5 +14,8 @@ jobs:
       with:
         path: date
     - name: Read and show
-      run: python monthly.py $(date) ${{ secrets.KEY}}
+      run:
+        echo $(date)
+        cat date
+        python monthly.py github ${{ secrets.KEY}}
 
