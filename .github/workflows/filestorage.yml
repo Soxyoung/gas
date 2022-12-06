@@ -26,6 +26,5 @@ jobs:
           path: date
       - name: Read and show
         run: 
-          cat date |
-          python monthly.py $(date +%F) ${{ secrets.KEY}} 
+          cat date 
 
