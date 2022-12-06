@@ -26,5 +26,5 @@ jobs:
           path: date
       - name: Read and show
         run: 
-          echo 2022-12-05 1.1 >> date | cat date 
+          cat date 
 
