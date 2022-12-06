@@ -33,7 +33,7 @@ jobs:
       # 配置安装 python 环境
       - uses: actions/setup-python@v2
         with:
-          python-version: 3.8.2
+          python-version: 3.9
           
       # 配置安装依赖包
       - run: pip install -r requirements.txt
@@ -42,10 +42,12 @@ jobs:
         uses: moonrailgun/branch-filestorage-action@v1.2.2
         with:
           path: date
-      - name: Read and show
+      - name: Before Try
         run: cat date
       - name: update date
         run: |
           python calc.py ${{ secrets.VAR0 }} ${{ secrets.VAR1 }} "06:00" "06:54" "06:25" "06:36" 0.95 >> date
+      - name: After Try
+        run: cat date
 
 
