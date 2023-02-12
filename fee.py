@@ -140,7 +140,7 @@ if __name__ == '__main__':
                 if (begin + (float)(v) > cur):
                     print("消费：", round((begin + (float)(v) - cur),2))
                     exit(0)
-		        elif math.isclose(begin + (float)(v), cur):
+		elif math.isclose(begin + (float)(v), cur):
                     print("未消费！")
                     exit(0)    
                 else:
