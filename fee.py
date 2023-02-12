@@ -9,6 +9,7 @@ from datetime import timezone
 from dateutil.parser import parse
 from bs4 import BeautifulSoup
 import sys
+import math
 
 def generateNewID():
     characters = '0123456789ABCDEF'
