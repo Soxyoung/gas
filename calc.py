@@ -100,7 +100,6 @@ if __name__ == '__main__':
 
     var0 = sys.argv[1]
     var1 = sys.argv[2]
-
     start_time = sys.argv[3]
     end_time = sys.argv[4]
     _start_time = sys.argv[5]
@@ -115,40 +114,25 @@ if __name__ == '__main__':
     beijing_cur = utc_now.astimezone(SHA_TZ)
     beijing_yesterday = utc_now.astimezone(SHA_TZ) + timedelta(days=-1)
     date_info = beijing_yesterday.strftime("%Y-%m-%d")
-#     print(beijing_cur.strftime("%Y-%m-%d %H:%M"), "星期" + str(beijing_cur.weekday() + 1))
     begin = query(var0, var1)
-#     print("初始查询：", begin)
     while True:
         now = time.time()
         delta = (int)(now - start)
         if (delta >= delta_max):
             utc_now = datetime.utcnow().replace(tzinfo=timezone.utc)
-#             print(utc_now.astimezone(SHA_TZ).strftime("%Y-%m-%d %H:%M:%S.%f"),"触发超时巡检退出条件，结束运行！")
-            # print("触发超时巡检退出条件，结束运行！")
             exit(0)
         cur = query(var0, var1)
-#         print("循环查询：", cur)
         if math.isclose(begin, cur):
             sleep_times = 541.95
             time.sleep(sleep_times)
         if (cur < begin):
-#             print("昨日未充值！昨日消费：" , (begin - cur))
-#             print("循环查询：", cur)
-#             print("未充值！消费：" , round((begin - cur),2))
             print(date_info, round((begin - cur),2))
             exit(0)
         if (cur > begin):
-#             print("充值！冲抵结算后剩余：", cur)
             dict = qryHis(var0, var1)
             for k,v in dict.items():
-#                 print(k, "充值",   v)
-                if (begin + (float)(v) > cur):
-#                     print("昨日消费：", (begin + (float)(v) - cur))
-#                     print("消费：", round((begin + (float)(v) - cur),2))
+                if (begin + (float)(v) > cur or math.isclose(begin + (float)(v), cur)):
                     print(date_info, round((begin + (float)(v) - cur),2))
-                    exit(0)
-                elif math.isclose(begin + (float)(v), cur):
-                    print("未消费,昨日充值！：", date_info, round((begin + (float)(v) - cur),2))
                     exit(0)
                 else:
                     begin = begin + (float)(v)
