@@ -9,6 +9,7 @@ from datetime import timezone
 from dateutil.parser import parse
 from bs4 import BeautifulSoup
 import sys
+import math
 
 def generateNewID():
     characters = '0123456789ABCDEF'
@@ -127,7 +128,7 @@ if __name__ == '__main__':
             exit(0)
         cur = query(var0, var1)
 #         print("循环查询：", cur)
-        if (begin == cur):
+        if math.isclose(begin, cur):
             sleep_times = 541.95
             time.sleep(sleep_times)
         if (cur < begin):
@@ -145,6 +146,9 @@ if __name__ == '__main__':
 #                     print("昨日消费：", (begin + (float)(v) - cur))
 #                     print("消费：", round((begin + (float)(v) - cur),2))
                     print(date_info, round((begin + (float)(v) - cur),2))
+                    exit(0)
+                elif math.isclose(begin + (float)(v), cur):
+                    print("未消费,昨日充值！：", date_info, round((begin + (float)(v) - cur),2))
                     exit(0)
                 else:
                     begin = begin + (float)(v)
