@@ -125,11 +125,10 @@ if __name__ == '__main__':
             exit(0)
         cur = query(var0, var1)
 #         print("循环查询：", cur)
-        if (begin == cur):
+        if math.isclose(begin, cur):
             sleep_times = 541.95
             time.sleep(sleep_times)
         if (cur < begin):
-#             print("昨日未充值！昨日消费：" , (begin - cur))
             print("循环查询：", cur)
             print("未充值！消费：" , round((begin - cur),2))
             exit(0)
@@ -139,8 +138,10 @@ if __name__ == '__main__':
             for k,v in dict.items():
                 print(k, "充值",   v)
                 if (begin + (float)(v) > cur):
-#                     print("昨日消费：", (begin + (float)(v) - cur))
                     print("消费：", round((begin + (float)(v) - cur),2))
                     exit(0)
+		        elif math.isclose(begin + (float)(v), cur):
+                    print("未消费！")
+                    exit(0)    
                 else:
                     begin = begin + (float)(v)
